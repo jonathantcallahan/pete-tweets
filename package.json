@@ -1,0 +1,32 @@
+{
+  "name": "ld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathantcallahan/ld.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathantcallahan/ld/issues"
+  },
+  "homepage": "https://github.com/jonathantcallahan/ld#readme",
+  "dependencies": {
+    "@google-cloud/language": "^2.0.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "heroku": "^7.19.4",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.4",
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {}
+}
