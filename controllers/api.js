@@ -92,4 +92,8 @@ module.exports = (app,Word,Sentence,Tweet) => {
             })
         })
     })
+
+    app.post('/api/likes', (req,res) => {
+        res.send('asdf')
+    })
 }

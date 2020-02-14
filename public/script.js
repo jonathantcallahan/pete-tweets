@@ -9,6 +9,21 @@ $('.refresh').on('click', function() {
     window.location.href = '/'
 })
 
+var time = new Date()
+var hour = time.getHours()
+var minute = time.getMinutes()
+var date = time.getDate()
+var year = time.getFullYear()
+var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+var month = months[time.getMonth()]
+$('.hour').text(hour)
+$('.minute').text(minute)
+$('.day').text(date)
+$('.month').text(month)
+$('.year').text(year)
+
+
+
 const getWords = function(s, removeSentences = true){
     const space = new RegExp(/\n/g)
     const p = new RegExp(/\./g)
@@ -244,7 +259,7 @@ const suggestTwo = (e) => {
 
 }
 
-const startingWords = ['we','a','if','working','i','no','together','to','that']
+const startingWords = ['we','a','if','working','no','together','to','thats','in','isnt','each','it']
 const randomWord = startingWords[Math.floor(startingWords.length * Math.random())]
 $('#user-input').text(randomWord)
 

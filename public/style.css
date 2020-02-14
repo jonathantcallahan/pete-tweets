@@ -1,13 +1,35 @@
-body {
-    font-family: monospace
+@font-face {
+    font-family: 'Helvetica Neue Medium';
+    src: url('./font/HelveticaNeue\ Medium.ttf')
 }
 
-#source-text, #user-input {
-    width: 40vw;
-    height: 30vh;
-    margin: 1vw;
-    border-radius: 2px; 
-    position: relative
+@font-face {
+    font-family: 'Helvetica Neue Light';
+    src: url('./font/HelveticaNeue\ Light.ttf')
+}
+
+body {
+    font-family: 'Helvetica Neue Medium'
+}
+
+.username-container {
+    display: flex
+}
+
+.username {
+    font-family: 'Helvetica Neue Light'
+}
+
+.date-time-container {
+    display: flex
+}
+
+.sharing-options {
+    display: flex
+}
+
+.tweet-stats {
+    display: flex
 }
 
 #source-text {
