@@ -5,6 +5,10 @@ const threeLibrary = {}
 const source = '#source-text'
 const userInput = '#user-input'
 
+$('.refresh').on('click', function() {
+    window.location.href = '/'
+})
+
 const getWords = function(s, removeSentences = true){
     const space = new RegExp(/\n/g)
     const p = new RegExp(/\./g)
@@ -16,7 +20,6 @@ const getWords = function(s, removeSentences = true){
 
 const store = function(){
     const words = getWords(source)
-    console.log(words)
     words.forEach((e,i)=>{
         if(library[e] == undefined) library[e] = {}
         if(library[e][words[i+1]] == undefined) library[e][words[i+1]] = 0
@@ -178,6 +181,13 @@ const suggestTwo = (e) => {
             console.log('Query variable %s not found', variable);
         }
         console.log('tweet hash', getQueryVariable('tweetHash'))
+        const tweetHash = getQueryVariable('tweetHash')
+        $.post('/api/get-tweet', {hash:tweetHash})
+        .done(res => {
+            document.querySelector(userInput).innerText = res[0].tweet
+            console.log(res)
+        })
+        .catch(err => console.log(err))
         return
     }
 

@@ -1,14 +1,13 @@
 const rp = require('request-promise')
 const {APPID, APPKEY} = require('./../config.json')
 const crypto = require('crypto')
-console.log(APPID, APPKEY)
  
 
 // https://github.com/googleapis/nodejs-language/blob/master/samples/analyze.v1.js
 // https://cloud.google.com/natural-language/docs/reference/rest/v1beta2/documents/analyzeSyntax
 
 
-module.exports = (app,Word,Sentence) => {
+module.exports = (app,Word,Sentence,Tweet) => {
     app.post('/api/word', (req,res) => {
         const {word} = req.body
         Word.findOne({word:word}, (err,w ) => {
@@ -52,11 +51,45 @@ module.exports = (app,Word,Sentence) => {
         })
     })
 
+    app.post('/api/get-tweet', (req, res) => {
+        const {hash} = req.body
+        console.log(hash)
+        Tweet.find({hash:hash}, (err, t) => {
+            if(err) { 
+                console.log(err)
+                res.send(err)
+                return
+            }
+            console.log(t)
+            res.send(t)
+        })
+    })
+
     app.post('/api/save-tweet', (req,res) => {
         const {tweet} = req.body
-        console.log(tweet)
-        const md5sum = crypto.createHash('md5').update(tweet.join(' ')).digest('hex')
-        console.log(md5sum)
-        res.send(md5sum)
+        async function createHash () {
+            let promise = new Promise(function (resolve, reject) {
+                resolve(crypto.createHash('md5').update(tweet.join(' ')).digest('hex'))   
+            })
+            let md5sum = await promise
+            return md5sum
+        }
+
+        createHash().then(md5sum => {
+            Tweet.find({hash:md5sum}, (err,t) => {
+                if(t.length) {
+                    console.log('tweet found', t)
+                    res.send(md5sum)
+                }
+                else {
+                    const newTweet = new Tweet({
+                        tweet:tweet.join(' '),
+                        hash:md5sum
+                    })
+                    newTweet.save()
+                    res.send(md5sum)
+                }
+            })
+        })
     })
 }
