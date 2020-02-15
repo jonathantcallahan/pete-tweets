@@ -80,21 +80,81 @@ body {
     background-image: url('./media/images/avi-1.jpg')
 }
 .avi-2 {
-    background-image: url('./media/images/avi-2.jpg')
+    background-image: url('./media/images/avi-2.png')
 }
 .avi-3 {
-    background-image: url('./media/images/avi-3.png')
+    background-image: url('./media/images/avi-3.jpg')
 }
 .avi-4 {
-    background-image: url('./media/images/avi-4.png')
+    background-image: url('./media/images/avi-4.jpg')
 }
 .avi-5 {
-    background-image: url('./media/images/avi-5.png')
-}
-.avi-6 {
-    background-image: url('./media/images/avi-6.png')
+    background-image: url('./media/images/avi-5.jpg')
 }
 
+.window-location {
+    visibility: hidden
+}
+
+.sharing-options {
+    display: flex;
+    justify-content: space-evenly
+}
+
+.likes-num, .shares-num {
+    display: inline
+}
+
+.retweet > i {
+    color: #9da0a3
+}
+
+.comment > i {
+    color: #9da0a3
+}
+
+.share > i {
+    color: #9da0a3
+}
+
+.retweet > i:hover {
+    color: #3faf83
+}
+
+.green {
+    color: #3faf83
+}
+
+.like > i {
+    color: #9da0a3
+}
+
+.like > i:hover {
+    color: #e0245e
+}
+
+.like .fas {
+    color: #e0245e
+}
+
+.like {
+    position: relative
+}
+
+@keyframes heart-animation {
+    0% { top: 0px; opacity: 1 }
+    100% { top: -20px; opacity: 0 }
+}
+
+.heart-animation {
+    position: absolute;
+    margin: auto auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    animation: heart-animation 1.5s
+}
 
 .sharing-options {
     display: flex

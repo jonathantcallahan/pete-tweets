@@ -7,7 +7,29 @@ const crypto = require('crypto')
 // https://cloud.google.com/natural-language/docs/reference/rest/v1beta2/documents/analyzeSyntax
 
 
-module.exports = (app,Word,Sentence,Tweet) => {
+module.exports = (app,Word,Sentence,Tweet,Likes) => {
+    app.post('/api/likes', (req,res) => {
+        const {type, target} = req.body
+        if(type === 'add') {
+            Likes.findOneAndUpdate({name:target}, {$inc : { likes: 1 }}).exec((err,likes) => {
+                if(!likes){
+                    var l = new Likes({
+                        likes: 1,
+                        name: likes
+                    })
+                    l.save()
+                }
+                res.send(likes)
+            })
+        } else {
+            Likes.findOne({name:target}).exec((err,likes) => {
+                if(err) { res.send(err); return }
+                res.send(likes)
+            })
+        }
+          
+    })
+    
     app.post('/api/word', (req,res) => {
         const {word} = req.body
         Word.findOne({word:word}, (err,w ) => {

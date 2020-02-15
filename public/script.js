@@ -22,6 +22,61 @@ $('.day').text(date)
 $('.month').text(month)
 $('.year').text(year)
 
+$('.retweet').on('click', function(){
+    window.open("http://twitter.com/intent/tweet?url=" + window.location.href + "&text=\"" + $(userInput).text() + "\" - Pete Buttigiegee (predictive tweet generator)&via=action_costanza")
+})
+
+$('.share > i').on('click', function(){
+    $('.window-location').val(window.location.href)
+    var urlTarget = document.querySelector('.window-location')
+    
+    urlTarget.focus()
+    urlTarget.select()
+
+    var copy = document.execCommand('copy')
+    console.log(copy)
+})
+
+setInterval(updateStats, 1000)
+updateStats()
+
+function updateStats() {
+    $.post('/api/likes', {type:'count', target: 'likes'})
+        .then(data => { $('.likes-num').text(data.likes) })
+        .catch(err => { $('.likes-num').text('420'); console.log(err) })
+    
+    $.post('/api/likes', {type:'count', target: 'shares'})
+        .then(data => { $('.shares-num').text(data.likes) })
+        .catch(err => { $('.shares-num').text('420'); console.log(err) })
+}
+
+
+$('.like').on('click', function() {
+    $.post('/api/likes', {type:'add', target: 'likes'})
+    .then(data => {
+        console.log(data)
+        $('.likes-num')
+        .text(data.likes)
+        $(this).find('i').removeClass('far')
+        .addClass('fas')
+
+        $('.like').prepend('<i class="fas fa-heart heart-animation"></i>')
+    })
+    .catch(err => console.log(err))
+})
+
+$('.retweet, .share').on('click', function() {
+    $.post('/api/likes', {type:'add', target: 'shares'})
+    .then(data => {
+        console.log(data)
+        $('.shares-num')
+        .text(data.likes)
+        $(this).find('i').addClass('green')
+
+    })
+    .catch(err => console.log(err))
+})
+
 
 
 const getWords = function(s, removeSentences = true){
