@@ -1,5 +1,5 @@
 const rp = require('request-promise')
-const {APPID, APPKEY} = require('./../config.json')
+const {APPID, APPKEY} = require('./../config.js')
 const crypto = require('crypto')
  
 

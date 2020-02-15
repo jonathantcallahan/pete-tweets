@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
 const app = express()
-const {URI} = require('./config.json')
+const {URI} = require('./config.js')
 
 mongoose.Promise = Promise
 mongoose.connect(URI, {useNewUrlParser:true})
