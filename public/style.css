@@ -108,6 +108,36 @@ body {
     border-left: 1px solid #e8ebed
 }
 
+.clipboard-message-container {
+    position: relative;
+    height: 100px;
+    width: 500px;
+
+}
+
+@keyframes clipboard-animation {
+    0% { opacity: 0; bottom: 0 }
+    20% { opacity: 1; bottom: 20px;}
+    50% { opacity: .8; bottom: 15px }
+    100% { opacity: 0; bottom: 15px}
+}
+
+.clipboard-message {
+    animation: clipboard-animation 4s forwards;
+    pointer-events: none;
+    position: absolute;
+    background: #3faf83;
+    color: white;
+    font-size: .65rem;
+    width: 130px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2px 5px 3px;
+    border-radius: 2px
+}
+
 .avi-container {
     display: flex;
     align-items: center;
@@ -138,8 +168,12 @@ body {
     background-image: url('./media/images/avi-5.jpg')
 }
 
-.window-location {
-    visibility: hidden
+#window-location {
+    color: white;
+    height: 0px;
+    border-width: 0px;
+    position: fixed;
+    bottom: -100px
 }
 
 .sharing-options {
@@ -148,8 +182,28 @@ body {
     margin-top: 15px
 }
 
+.button-modal {
+    position: absolute;
+    font-size: .65rem;
+    width: 60px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: #00acee;
+    color: white;
+    padding: 2px 5px 3px;
+    border-radius: 2px;
+    margin-top: 10px;
+    display: none
+}
+
+.button {
+    position: relative
+}
+
 .sharing-options > div {
-    margin: 0px 50px 0px 0px
+    width: 70px;
+    text-align: center;
 }
 
 .likes-num, .shares-num {
@@ -207,11 +261,11 @@ body {
     color: #e0245e
 }
 
-.github > i {
+.github i {
     color: #9da0a3
 }
 
-.github > i:hover {
+.github i:hover {
     color: #24292e
 }
 

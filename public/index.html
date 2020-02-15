@@ -40,11 +40,21 @@
             </div>
         </div>
         <div class='sharing-options'>
-            <div class='comment'><i class="far fa-comment"></i></div>
-            <div class='retweet'><i class="fas fa-retweet"></i></div>
-            <div class='like'><i class="far fa-heart"></i></div>
-            <div class='share'><i class="fas fa-external-link-alt"></i></div>
-            <div class='github'><i class="fab fa-github"></i></div>
+            <div class='comment button'><i class="far fa-comment"></i>
+                <div class='button-modal'>about this app</div>
+            </div>
+            <div class='retweet button'><i class="fas fa-retweet"></i>
+                <div class='button-modal'>share on twitter</div>
+            </div>
+            <div class='like button'><i class="far fa-heart"></i>
+                <div class='button-modal'>high five</div>
+            </div>
+            <div class='share share-button button' data-clipboard-target='#window-location'><i class="fas fa-external-link-alt"></i>
+                <div class='button-modal'>copy link to clipboard</div>
+            </div>
+            <div class='github button'><a href='https://github.com/jonathantcallahan/pete-tweets' target='_blank'><i class="fab fa-github"></i></a>
+                <div class='button-modal'>view project on github</div>
+            </div>
         </div>
     </div>
     <div class='about-modal'>
@@ -53,18 +63,22 @@
             <div class='profile-links small-text'>
                 <span class='bold'>Jonathan</span>
                 <span class='username'>@action_costanza</span>
-                <div class='tweet-text'>I honestly wish I could have made this for Bloomberg. But, unfortunately 60 billion dollars couldn't buy him a personality. Mocking him would would just be a sequence of 1 and 0s. Have fun with this but I do want to be clear, fuck Mike Bloomberg too #NeverMike</div>
+                <div class='tweet-text'>Have fun with this but I do want to be clear, fuck Mike Bloomberg too</div>
             </div>
         </div>
     </div>
     <div class='refresh'>generate new tweet</div>
-    <div class='share-text'>share</div>
+    <div class='share-text share-button' data-clipboard-target='#window-location'>share</div>
+    <div class='clipboard-message-container'>
+        
+    </div>
     <div id='suggestion-container-container'>
         <div id='suggestion-container'>
             <span>&rarr;</span>
             <span id='suggestion'></span>
         </div>
     </div>
+    <input id='window-location'></input>
     
     <script
         src="https://code.jquery.com/jquery-3.3.1.js"
@@ -73,4 +87,5 @@
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'></link>
     <link rel='stylesheet' href='./style.css'></link>
     <script src='./script.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 </body>

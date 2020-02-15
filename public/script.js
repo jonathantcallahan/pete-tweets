@@ -5,8 +5,20 @@ const threeLibrary = {}
 const source = '#source-text'
 const userInput = '#user-input'
 
+$('.sharing-options .button').mouseover(function(){
+    $(this).find('.button-modal').css({'display':'block'})
+}).mouseout(function () {
+    $(this).find('.button-modal').css({'display':'none'})
+})
+
 $('.refresh').on('click', function() {
     window.location.href = '/'
+})
+
+new ClipboardJS('.share-button')
+
+$('.share-button').on('click', function () {
+    $('.clipboard-message-container').append("<div class='clipboard-message'>link copied to clipboard</div>")
 })
 
 var time = new Date()
@@ -22,6 +34,9 @@ $('.day').text(date)
 $('.month').text(month)
 $('.year').text(year)
 
+document.querySelector('#window-location').value = window.location.href
+$('#window-location').attr('value',window.location.href)
+
 $('.comment').on('click', function(){
     const about = $('.about-modal')
     if(about.hasClass('display-about')){
@@ -33,17 +48,6 @@ $('.comment').on('click', function(){
 
 $('.retweet').on('click', function(){
     window.open("http://twitter.com/intent/tweet?url=" + window.location.href + "&text=\"" + $(userInput).text() + "\" - Pete Buttigiegee (predictive tweet generator)&via=action_costanza")
-})
-
-$('.share > i').on('click', function(){
-    $('.window-location').val(window.location.href)
-    var urlTarget = document.querySelector('.window-location')
-    
-    urlTarget.focus()
-    urlTarget.select()
-
-    var copy = document.execCommand('copy')
-    console.log(copy)
 })
 
 setInterval(updateStats, 1000)
@@ -74,7 +78,7 @@ $('.like').on('click', function() {
     .catch(err => console.log(err))
 })
 
-$('.retweet, .share').on('click', function() {
+$('.retweet, .share, .share-button').on('click', function() {
     $.post('/api/likes', {type:'add', target: 'shares'})
     .then(data => {
         console.log(data)
@@ -240,6 +244,7 @@ function saveTweet() {
     .done(d => {
         console.log(d)
         history.pushState({page:1}, 'Pete Tweets', '?tweetHash='+d)
+        document.querySelector('#window-location').value = window.location.href
     })
     .catch(err => console.log(err))
 }
