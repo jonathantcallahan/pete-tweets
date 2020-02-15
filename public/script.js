@@ -22,6 +22,15 @@ $('.day').text(date)
 $('.month').text(month)
 $('.year').text(year)
 
+$('.comment').on('click', function(){
+    const about = $('.about-modal')
+    if(about.hasClass('display-about')){
+        about.removeClass('display-about').addClass('hide-about')
+    } else {
+        about.removeClass('hide-about').addClass('display-about')
+    }
+})
+
 $('.retweet').on('click', function(){
     window.open("http://twitter.com/intent/tweet?url=" + window.location.href + "&text=\"" + $(userInput).text() + "\" - Pete Buttigiegee (predictive tweet generator)&via=action_costanza")
 })
