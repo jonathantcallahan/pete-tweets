@@ -56,7 +56,8 @@ body {
 }
 
 .tweet-container {
-    max-width: 500px;
+    max-width: 90vw;
+    width: 500px;
     margin-bottom: 30px;
     padding: 10px
 }
